@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    background-color: aqua;
+    position: relative;
+}
+
+.title-img {
+    width: 120px;
+    height: 120px;
+    background-color: blueviolet;
+}
+
+ul,
+li {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: brown;
+    position: relative;
+}
+
+.ul-wrap {
+    width: 100%;
+    background-color: bisque;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    position: absolute;
+    bottom: 0px;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: aqua;
+    position: relative;
+}
+
+.menu-item a:hover {
+    background-color: rgb(1, 150, 150);
+}
+
+.sub-menu {
+    position: absolute;
+    background-color: chartreuse;
+    width: 145px;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    display: none;
+    z-index: 9;
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    text-align: center;
+}
+
+.sub-menu li a {
+    display: block;
+    padding: 10px;
+}
+
+main {
+    margin-top: 20px;
+    background-color: yellow;
+}
+
+.banner-holder {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.img-area {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background-color: coral;
+}
+
+.text-area {
+    position: absolute;
+    width: 40%;
+    height: 300px;
+    background-color: blue;
+    z-index: 8;
+}
+
+.info-holder {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.notes-area {
+    width: 48%;
+    height: 300px;
+    background-color: brown;
+}
+
+.best-area {
+    width: 48%;
+    height: 300px;
+    background-color: steelblue;
+}
