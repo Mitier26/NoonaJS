@@ -18,3 +18,17 @@ console.table(animals);
 
 // fruits.pop();
 // console.log(fruits);
+
+let l = 11;
+for (k = 2; k < l; k++) {
+    console.log(k);
+    console.log(l);
+    console.log(l % k);
+    if (l % k === 0) {
+        console.log('false');
+    } else if (l === 1) {
+        console.log('false');
+    } else {
+        console.log('true');
+    }
+}
