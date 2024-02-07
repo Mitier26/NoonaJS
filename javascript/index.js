@@ -1,4 +1,6 @@
 window.onload = function () {
+    window.location.href = '/html/js_03_if3.html';
+
     const goalDate = new Date('2024-02-25').getTime();
 
     function calcDate() {
