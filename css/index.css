@@ -6,6 +6,10 @@
 
 body {
     min-height: 100vh;
+    /* background-image: url(/images/background.gif); */
+    background-image: url(/images/spring.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 header {
@@ -36,8 +40,18 @@ a {
     display: inline-block;
     text-align: center;
     width: 100%;
+    height: 120px;
     background-color: brown;
     position: relative;
+}
+
+#dday {
+    font-family: 'Protest Guerrilla';
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 80px;
+    color: white;
+    word-spacing: 15px;
 }
 
 .ul-wrap {
@@ -104,15 +118,20 @@ main {
     position: absolute;
     width: 100%;
     height: 300px;
-    background-color: coral;
+    /* background-color: coral; */
+    background-image: url(/images/if.png);
+    background-size: cover;
+    background-position: center;
 }
 
 .text-area {
     position: absolute;
     width: 40%;
     height: 300px;
-    background-color: blue;
+    min-width: 280px;
+    /* background-color: blue; */
     z-index: 8;
+    padding: 20px;
 }
 
 .info-holder {
