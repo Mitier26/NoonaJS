@@ -67,6 +67,7 @@ button:hover {
 #lot-holder {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .ball {
