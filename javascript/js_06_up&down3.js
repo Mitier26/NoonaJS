@@ -6,6 +6,12 @@ window.onload = function () {
     const userInput = document.getElementById('user-input');
     const resultImg = document.getElementById('result-img');
 
+    const audioPlay = document.getElementById('bgm');
+
+    if (audioPlay) {
+        audioPlay.play();
+    }
+
     const downImg = ['/images/down1.png', '/images/down1.png'];
     const upImg = ['/images/up1.png', '/images/up2.png'];
     const colors = ['red', 'orange', 'yellow', 'blue', 'green', 'lightgreen'];
@@ -31,6 +37,11 @@ window.onload = function () {
     chancesElement.style.fontSize = `${chance}vw`;
     // 찾기 버튼을 눌렀을 때
     function search() {
+        if (!audioPlay.onplay) {
+            audioPlay.volume = 0.2;
+            audioPlay.play();
+        }
+
         if (gameOver) {
             return; // 게임 종료 시 함수 중단
         }
@@ -86,6 +97,7 @@ window.onload = function () {
         setRandomNum();
         resultImg.src = '/images/first game_UI.png';
         userInput.value = '';
+        resultElement.innerText = '숨은 숫자를 찾아줘';
         gameOver = false;
         chance = 5;
         userNumList = [];

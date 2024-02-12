@@ -5,7 +5,7 @@
 }
 
 body {
-    min-height: 100vh;
+    max-height: 100vh;
     background-image: url(/images/updownBackground.jpg);
     background-position: center;
     background-size: cover;
