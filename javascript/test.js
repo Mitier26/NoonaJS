@@ -33,14 +33,34 @@
 //     }
 // }
 
-for (let i = 1; i <= 50; i++) {
-    if (i % 10 === 3 || i % 10 === 6 || i % 10 === 9) {
-        console.log('박수');
-        if (i >= 30 && i <= 39) {
-            console.log('박수');
-        } else {
-        }
-    } else {
-        console.log(i);
+// for (let i = 1; i <= 50; i++) {
+//     if (i % 10 === 3 || i % 10 === 6 || i % 10 === 9) {
+//         console.log('박수');
+//         if (i >= 30 && i <= 39) {
+//             console.log('박수');
+//         } else {
+//         }
+//     } else {
+//         console.log(i);
+//     }
+// }
+
+let result = document.getElementById('result');
+let input = document.getElementById('input');
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click', AA);
+
+let a = 0;
+let b = [];
+
+function AA() {
+    a = input.value;
+
+    if (b.includes(a)) {
+        return (result.textContent = '이상');
     }
+    b.push(a);
+    console.table(b);
+    result.textContent = '3';
 }

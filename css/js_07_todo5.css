@@ -1,8 +1,15 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* height: 100vh; */
     background-image: url(/images/background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -13,47 +20,36 @@ body {
 }
 
 .task-area {
-    border: 1px solid lightgrey;
+    border: 1px solid lightgray;
 }
 
 .task-tabs {
     display: flex;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid lightgray;
     position: relative;
 }
 
 .task-tabs div {
     padding: 1em;
+    cursor: pointer;
 }
 
 #under-line {
     height: 4px;
-    background-color: pink;
-    position: absolute;
     width: 80px;
     left: 0px;
     top: 52px;
+    background-color: pink;
+    position: absolute;
     padding: 0;
 }
 
 .task {
     display: flex;
     justify-content: space-between;
-    /* padding: 1em; */
+    padding: 1em;
 }
 
 .task-done {
     text-decoration: line-through;
-    background-color: antiquewhite;
-    width: 80%;
-    height: 100%;
-    padding: 5px;
-}
-
-.task-tabs:hover {
-    cursor: pointer;
-}
-
-.task-btn-group {
-    display: inline-block;
 }
