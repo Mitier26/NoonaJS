@@ -17,6 +17,9 @@ taskInput.addEventListener('keydown', function (event) {
 
 for (let i = 1; i < tabs.length; i++) {
     tabs[i].addEventListener('click', function (event) {
+        underLine.style.left = event.currentTarget.offsetLeft + 'px';
+        underLine.style.width = event.currentTarget.offsetWidth + 'px';
+        underLine.style.top = event.currentTarget.offsetTop + event.currentTarget.offsetHeight + 'px';
         filter(event);
     });
 }
