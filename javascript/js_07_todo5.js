@@ -10,8 +10,8 @@ let mode = 'all';
 addButton.addEventListener('click', addTask);
 
 taskInput.addEventListener('keydown', function (event) {
-    if (event.keyCode === 13) {
-        addTask(event);
+    if (event.key === 'Enter') {
+        addTask();
     }
 });
 
@@ -25,15 +25,20 @@ for (let i = 1; i < tabs.length; i++) {
 }
 
 function addTask() {
-    // let taskContent = taskInput.value;
-    let task = {
-        id: randomIDGenerate(),
-        taskContent: taskInput.value,
-        isComplete: false,
-    };
-    taskList.push(task);
-    taskInput.value = '';
-    render();
+    let taskContent = taskInput.value;
+    if (taskContent !== null && taskContent !== '') {
+        console.log(taskContent);
+        console.log('why');
+        let task = {
+            id: randomIDGenerate(),
+            taskContent: taskInput.value,
+            isComplete: false,
+        };
+
+        taskList.push(task);
+        taskInput.value = '';
+        render();
+    }
 }
 
 function render() {

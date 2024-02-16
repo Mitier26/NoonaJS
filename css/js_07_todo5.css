@@ -41,6 +41,7 @@ body {
     top: 52px;
     background-color: pink;
     position: absolute;
+    padding: 0;
     transition: 0.5s;
 }
 
