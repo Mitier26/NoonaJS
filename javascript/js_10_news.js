@@ -15,7 +15,7 @@ const getNews = async () => {
     try {
         url.searchParams.set('page', page);
         url.searchParams.set('pageSize', pageSize);
-
+        console.log(url);
         const response = await fetch(url);
 
         const data = await response.json();
