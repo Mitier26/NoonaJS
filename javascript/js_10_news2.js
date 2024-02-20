@@ -2,7 +2,7 @@ const API_KEY = `1825671e944f4bdf9b1d73315265f7fe`;
 let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 
-let url = new URL(`https://noonajs.netlify.app/html/js_10_news2.html/top-headlines?country=kr&apiKey=${API_KEY}`);
+let url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&apiKey=${API_KEY}`);
 
 let totalResults = 0;
 let page = 1;
@@ -40,7 +40,7 @@ const getNews = async () => {
 const getLateNews = async () => {
     page = 1;
     // 뉴스를 받아오기전에 어디서 가지고 올지 지정해 주어야한다.
-    url = new URL(`https://noonajs.netlify.app/html/js_10_news2.html/top-headlines?country=kr&apiKey=${API_KEY}`);
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&apiKey=${API_KEY}`);
     // URL 자바스트립트에서 제공하는 인스턴스
     // console.log(url);
     // 출력해보면 postman처럼 각각 데이터가 들어 간다.
@@ -71,9 +71,7 @@ const getNewsByCategory = async (event) => {
     page = 1;
     const category = event.target.textContent.toLowerCase();
 
-    url = new URL(
-        `https://noonajs.netlify.app/html/js_10_news2.html/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`
-    );
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`);
 
     getNews();
 };
@@ -81,9 +79,7 @@ const getNewsByCategory = async (event) => {
 const getNewsByKeyword = async () => {
     page = 1;
     const keyword = document.getElementById('search-input').value;
-    url = new URL(
-        `https://noonajs.netlify.app/html/js_10_news2.html/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`
-    );
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`);
     getNews();
 };
 
