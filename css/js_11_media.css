@@ -1,0 +1,41 @@
+body {
+    color: blue;
+}
+
+@media (max-width: 600px) {
+    .cellphone {
+        color: red;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 992px) {
+    .tablet {
+        color: red;
+    }
+}
+
+@media (min-width: 992px) {
+    .desktop {
+        color: red;
+    }
+}
+
+/* 화면의 비율로 가로모드, 세로모드일 때 작동 */
+@media (orientation: landscape) {
+    body {
+        color: green;
+    }
+}
+
+@media (orientation: portrait) {
+    body {
+        color: orange;
+    }
+}
+
+/* 인쇄용 버전 */
+@media print {
+    body {
+        color: purple;
+    }
+}

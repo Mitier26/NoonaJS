@@ -8,6 +8,47 @@
     width: 430px;
 }
 
+.container {
+    margin-top: 30px;
+}
+.side-menus {
+    /* display: flex; */
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9;
+}
+
+.showSide {
+    display: flex;
+}
+
+.side-menus button {
+    padding: 20px 20px;
+    background-color: azure;
+    width: 300px;
+    border: none;
+    font-size: 1.5em;
+}
+
+.side-menus button i {
+    float: right;
+}
+
+#side-btn {
+    font-size: 1.5em;
+    display: none;
+}
+
+#search-btn {
+    font-size: 1.5em;
+    margin-left: 20px;
+}
+
 .menus {
     margin-top: 1em;
     display: flex;
@@ -34,4 +75,38 @@
 
 .news {
     border-bottom: 2px solid black;
+}
+.wrap {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+#input-box {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    transition: 0.5s ease-in-out;
+    height: 30px;
+}
+
+#input-box.search-on {
+    max-width: 540px;
+}
+
+.news-text {
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 767px) {
+    #side-btn {
+        display: inline-block;
+    }
+    .menus {
+        display: none;
+    }
+    .head-line {
+        border-bottom: 4px double black;
+        margin-bottom: 20px;
+    }
 }

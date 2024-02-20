@@ -2,7 +2,7 @@ const API_KEY = `1825671e944f4bdf9b1d73315265f7fe`;
 let newsList = [];
 const menus = document.querySelectorAll('.menus button');
 
-let url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&apiKey=${API_KEY}`);
+let url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr`);
 
 let totalResults = 0;
 let page = 1;
@@ -13,6 +13,26 @@ const groupSize = 5;
 menus.forEach((item) => {
     item.addEventListener('click', (event) => getNewsByCategory(event));
 });
+
+// 사이드 메뉴
+const sideMenus = document.querySelectorAll('.side-menus button');
+
+sideMenus.forEach((item) => {
+    item.addEventListener('click', (event) => getNewsByCategory(event));
+});
+
+function sideMenu() {
+    document.getElementById('side-menus').classList.toggle('showSide');
+}
+
+// 검색 버튼
+const searchOn = () => {
+    document.getElementById('input-box').classList.toggle('search-on');
+};
+
+// function clearText(event) {
+//     event.value = '';
+// }
 
 const getNews = async () => {
     try {
@@ -30,6 +50,25 @@ const getNews = async () => {
             render();
             paginationRender();
         } else {
+            let errorStatus = response.status;
+            let errorCode = response.code;
+            if (errorStatus === 400) throw new Error('요청이 허락되지 않습니다.');
+            else if (errorStatus === 401) throw new Error('API키가 올바르지 않습니다.');
+            else if (errorStatus === 429) throw new Error('요청이 너무 많습니다.');
+            else if (errorStatus === 500) throw new Error('NewsApi가 고장났습니다');
+
+            if (errorCode == 'apiKeyDisabled') throw new Error('API 키가 비활성화 되었습니다.');
+            else if (errorCode == 'apiKeyExhausted') throw new Error('API로 더이상 요청할 수 없다.');
+            else if (errorCode == 'apiKeyInvalid')
+                throw new Error('API 키가 올바르게 입력되지 않았습니다. 다시 확인하고 다시 시도하십시오');
+            else if (errorCode == 'apiKeyMissing') throw new Error('요청에서 API 키가 없습니다.');
+            else if (errorCode == 'parameterInvalid')
+                throw new Error('지원되지 않는 매개 변수를 요청에 포함 시켰습니다. ');
+            else if (errorCode == 'parametersMissing') throw new Error('매개 변수가 누락되어 완료 할 수 없습니다.');
+            else if (errorCode == 'rateLimited') throw new Error('당신은 요금이 제한되었습니다.');
+            else if (errorCode == 'sourcesTooMany') throw new Error('한 번의 요청으로 너무 많은 소스를 요청했습니다.');
+            else if (errorCode == 'sourceDoesNotExist') throw new Error('존재하지 않는 소스를 요청했습니다.');
+            else if (errorCode == 'unexpectedError') throw new Error('나의 잘못.');
             throw new Error(data.message);
         }
     } catch (error) {
@@ -40,7 +79,7 @@ const getNews = async () => {
 const getLateNews = async () => {
     page = 1;
     // 뉴스를 받아오기전에 어디서 가지고 올지 지정해 주어야한다.
-    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&apiKey=${API_KEY}`);
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr`);
     // URL 자바스트립트에서 제공하는 인스턴스
     // console.log(url);
     // 출력해보면 postman처럼 각각 데이터가 들어 간다.
@@ -71,7 +110,7 @@ const getNewsByCategory = async (event) => {
     page = 1;
     const category = event.target.textContent.toLowerCase();
 
-    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`);
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&category=${category}`);
 
     getNews();
 };
@@ -79,7 +118,9 @@ const getNewsByCategory = async (event) => {
 const getNewsByKeyword = async () => {
     page = 1;
     const keyword = document.getElementById('search-input').value;
-    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`);
+    url = new URL(`https://noonajs.netlify.app/top-headlines?country=kr&q=${keyword}`);
+    searchOn();
+    document.getElementById('search-input').value = '';
     getNews();
 };
 
@@ -89,12 +130,22 @@ const render = () => {
             (news) => ` 
     <div class="row news">
         <div class="col-lg-4">
-            <img class="news-img-size" src="${news.urlToImage}" alt="" />
+            <img class="news-img-size" src="${
+                news.urlToImage == null
+                    ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU'
+                    : news.urlToImage
+            }" alt="" />
         </div>
         <div class="col-lg-8">
             <h2>${news.title}</h2>
-            <p>${news.description}</p>
-            <div>${news.source.name} * ${news.publishedAt}</div>
+            <p class='news-text'>${
+                news.description == null || news.description == ''
+                    ? '내용없읍'
+                    : news.description.length > 200
+                    ? news.description.substring(0, 200) + '...'
+                    : news.description
+            }</p>
+            <div>${news.source == null ? 'No Source' : news.source.name} * ${moment(news.publishedAt).fromNow()}</div>
         </div>
     </div>`
         )
@@ -127,10 +178,18 @@ const paginationRender = () => {
     }
     // firstPage
     const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+    // console.log(pageGroup);
+    let pagiNationHTML = '';
 
-    let pagiNationHTML = `<li class="page-item" onclick="moveToPage(${
-        page - 1
-    })"><a class="page-link" href="">Previous</a></li>`;
+    if (pageGroup > 1) {
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" href="">&lt&lt</a></li>`;
+    }
+
+    if (page != 1) {
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${
+            page - 1
+        })"><a class="page-link" href="">&lt</a></li>`;
+    }
 
     for (let i = firstPage; i <= lastPage; i++) {
         pagiNationHTML += `<li class="page-item ${i === page ? 'active' : ''}" onclick="moveToPage(${i})">
@@ -139,9 +198,16 @@ const paginationRender = () => {
                     </a>
                 </li>`;
     }
-    pagiNationHTML += `<li class="page-item" onclick="moveToPage(${
-        page + 1
-    })"><a class="page-link" href="#">Next</a></li>`;
+    if (page != lastPage) {
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${
+            page + 1
+        })"><a class="page-link" href="#">&gt</a></li>`;
+    }
+
+    if (pageGroup < lastPage) {
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${lastPage})"><a class="page-link" href="#">&gt&gt</a></li>`;
+    }
+
     document.querySelector('.pagination').innerHTML = pagiNationHTML;
 };
 
