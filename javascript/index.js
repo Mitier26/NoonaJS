@@ -1,5 +1,5 @@
 window.onload = function () {
-    window.location.href = '/html/js_06_up&down3.html';
+    window.location.href = '/html/js_10_news2.html';
 
     const goalDate = new Date('2024-02-25').getTime();
 
