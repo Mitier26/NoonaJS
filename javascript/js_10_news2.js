@@ -182,13 +182,13 @@ const paginationRender = () => {
     let pagiNationHTML = '';
 
     if (pageGroup > 1) {
-        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" href="">&lt&lt</a></li>`;
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${1})"><a class="page-link" href="#">&lt&lt</a></li>`;
     }
 
-    if (page != 1) {
+    if (page > firstPage) {
         pagiNationHTML += `<li class="page-item" onclick="moveToPage(${
             page - 1
-        })"><a class="page-link" href="">&lt</a></li>`;
+        })"><a class="page-link" href="#">&lt</a></li>`;
     }
 
     for (let i = firstPage; i <= lastPage; i++) {
@@ -198,14 +198,14 @@ const paginationRender = () => {
                     </a>
                 </li>`;
     }
-    if (page != lastPage) {
+    if (page < totalPages) {
         pagiNationHTML += `<li class="page-item" onclick="moveToPage(${
             page + 1
         })"><a class="page-link" href="#">&gt</a></li>`;
     }
 
-    if (pageGroup < lastPage) {
-        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${lastPage})"><a class="page-link" href="#">&gt&gt</a></li>`;
+    if (page < totalPages) {
+        pagiNationHTML += `<li class="page-item" onclick="moveToPage(${totalPages})"><a class="page-link" href="#">&gt&gt</a></li>`;
     }
 
     document.querySelector('.pagination').innerHTML = pagiNationHTML;
@@ -213,6 +213,7 @@ const paginationRender = () => {
 
 const moveToPage = (pageNum) => {
     page = pageNum;
+    console.log(page);
     getNews();
 };
 
