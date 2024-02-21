@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Drag & Drop Game</title>
+        <link rel="stylesheet" href="/css/js_13_Drag&DropGame.css" />
+    </head>
+    <body>
+        <div class="drag" id="drag">
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block1"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/1.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block2"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/2.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block3"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/3.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block4"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/4.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block5"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/5.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block6"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/6.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block7"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/7.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block8"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/8.png)"
+                ></div>
+            </div>
+            <div class="dragBox">
+                <div
+                    class="images"
+                    draggable="true"
+                    id="block9"
+                    ondragstart="drag(event)"
+                    style="--img: url(/images/drag&drop/9.png)"
+                ></div>
+            </div>
+        </div>
+
+        <div class="board">
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="dropBox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <button class="reset" onclick="window.location.reload();">Rest Button</button>
+        <script src="/javascript/js_13_Drag&DropGame.js"></script>
+    </body>
+</html>
